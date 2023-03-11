@@ -29,7 +29,7 @@ export async function getStaticProps() {
       }
       _traitCounts[attribute.trait_type][attribute.value]++
     }
-    
+
     inscription.inscription_number = await fetchInscriptionNumber(inscription.id)
   }
 
@@ -67,7 +67,7 @@ export async function getStaticProps() {
 function setQuery(router, filterList) {
   var query = encodeURIComponent(filterList.map((filter) => `${filter.property}-${filter.trait}`).join('.'))
   query = `filters=${query}`
-  
+
   // Check if query is different. No need to do anything if it is the same
   var currentQuery = router.asPath
   currentQuery = currentQuery.substring(currentQuery.indexOf('?') + 1)
@@ -131,13 +131,13 @@ function filterInscriptions(inscriptions, traitFilters) {
   let filteredInscriptions = []
   for (let inscription of inscriptions) {
     var inFilter = true
-    
+
     for (let property of Object.keys(traitFilters)) {
       // If all filters are false, then we match everything, so skip this property
       if (!Object.values(traitFilters[property]).reduce((acc, val) => acc || val)) {
         continue
       }
-      
+
       // If there is a attribute that matches a filter for this property, it could be in the filter, otherwise it's definitely not
       var propertyInFilter = false
       for (let attribute of inscription.meta.attributes) {
@@ -164,7 +164,7 @@ export default function Collection({ inscriptions, traitCounts, config }) {
 
   const [filters, setFilters] = useState(() => parseFilters(router, traitCounts))
   const [traitFilters, setTraitFilters] = useState(() => generateTraitFilters(filters, traitCounts))
-  const [filteredInscriptions, setFilteredInscriptions] = useState(() => 
+  const [filteredInscriptions, setFilteredInscriptions] = useState(() =>
       filterInscriptions(inscriptions, traitFilters))
   const [sideBarOpen, setSideBarOpen] = useState(false)
 
@@ -217,15 +217,15 @@ export default function Collection({ inscriptions, traitCounts, config }) {
             <Button text="Filter" icon="filter" onClick={toggleSideBar} style={{ letterSpacing: "0.07rem" }}/>
             {filters.length > 0 &&
               <div className={styles.filterContainer}>
-                {filters.map((filter) => 
+                {filters.map((filter) =>
                   <FilterCard property={filter.property} trait={filter.trait} setState={setFilterState} key={`card_${filter.property}_${filter.trait}`}/>
                 )}
-                <p className={styles.clearAll} onClick={() => setQuery(router, [])}>Clear All</p> 
+                <p className={styles.clearAll} onClick={() => setQuery(router, [])}>Clear All</p>
               </div>
             }
           </div>
           <div className={styles.collectionContainer}>
-            {filteredInscriptions.map((inscription) => 
+            {filteredInscriptions.map((inscription) =>
               <Link href={`/${inscription.id}`} key={inscription.meta.name}>
                 <div className={styles.imageCard}>
                   <div className={styles.imageContainer}>
@@ -272,13 +272,14 @@ function SideBar({ isOpen, filters, counts, setState, toggleSideBar }) {
             width: "2.5rem"
           }}/>
         </div>
-        {Object.keys(filters).map((property) => 
+        {Object.keys(filters).map((property) =>
           <FilterProperty property={property} filters={filters[property]} counts={counts[property]} key={`property_${property}`} setState={setState}/>
         )}
       </div>
     </div>
   )
 }
+
 
 function FilterProperty({ property, filters, counts, setState }) {
   const [open, setOpen] = useState(false)
@@ -316,3 +317,4 @@ function FilterTrait({ property, trait, count, checked, setState }) {
     </button>
   )
 }
+

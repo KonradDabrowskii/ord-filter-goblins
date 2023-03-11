@@ -72,7 +72,7 @@ export default function Incription({ inscription, config }) {
 function HeaderInfo({ inscription }) {
   return (
     <div className={styles.headerContainer}>
-      <h1>{`Inscription #${inscription.inscription_number}`}</h1>
+      <h1>{`Inscription  #${inscription.inscription_number}`}</h1>
       <HeaderItem name="ID" value={inscription.id} copyButton/>
       <Button text="View on Ordinals.com" href={`https://ordinals.com/inscription/${inscription.id}`} openTab style={{
         margin: "0.5rem 0.5rem 0.5rem auto",

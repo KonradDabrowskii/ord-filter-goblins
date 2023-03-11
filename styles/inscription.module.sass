@@ -3,6 +3,7 @@
 .mainContainer
     max-width: 100rem
     margin: auto
+    margin: 6rem auto 0
 
 .contentContainer
     padding: 2rem clamp(2rem, calc(50vw - 33rem), 10%)
@@ -60,7 +61,7 @@
 
 .headerItem > p:first-of-type
     font-size: 0.8rem
-    color: lighten($on-primary-color, 25%)
+    color: $on-primary-color
     text-transform: uppercase
     font-weight: bold
 
@@ -80,7 +81,7 @@
 .attributesContainer > h1
     color: $on-primary-color
     border-bottom: 1px solid $surface-border-color
-    font-size: 1.2rem
+    font-size: 1.5rem
     padding: 0.7rem 2rem 0.7rem 2rem
     margin: 0
 
@@ -116,7 +117,7 @@
 
 .property
     color: lighten($on-primary-color, 25%)
-    font-size: 0.7rem
+    font-size: 1.3rem
     font-weight: bold
     text-transform: uppercase
     
@@ -124,8 +125,8 @@
     color: $on-primary-color
 
 .rarity
-    color: lighten($on-primary-color, 40%)
-    font-size: 0.8rem
+    color: $on-primary-color
+    font-size: 0.9rem
 
 @media(max-width: 54rem)
     .contentContainer
